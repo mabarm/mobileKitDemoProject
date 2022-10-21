@@ -10,12 +10,12 @@ import {FlatList} from 'react-native-gesture-handler';
 import FailedIcon from '../../assets/failed.svg';
 import SendIcon from '../../assets/sent.svg';
 import ReceivedIcon from '../../assets/received.svg';
+import HomeScreenStyles from './HomeScreenStyles';
 
 const HomeScreen = ({navigation}) => {
   const snapPoints = ['16', '30%', '60%'];
 
   const requestMoney = () => {
-    console.log('rrr');
     navigation.navigate('MoneyRequested');
   };
 
@@ -27,62 +27,27 @@ const HomeScreen = ({navigation}) => {
     return (
       <View
         style={[
-          {
-            flexDirection: 'row',
-            height: 88,
-            borderRadius: 8,
-            opacity: 0.9,
-            alignItems: 'center',
-            paddingHorizontal: 16,
-          },
+          HomeScreenStyles.imageBarItem,
           item.id % 2 != 0
             ? {backgroundColor: '#192259'}
             : {backgroundColor: '#10194E'},
         ]}>
-        <Image
-          source={{
-            uri: item.image,
-          }}
-          style={{width: 48, height: 48, borderRadius: 48 / 2}}
-        />
-        <View
-          style={{
-            marginLeft: 16,
-          }}>
-          <Text
-            style={{
-              fontSize: 16,
-              fontWeight: '700',
-              lineHeight: 24,
-              color: '#858EC5',
-            }}>
-            {item.name}
-          </Text>
+        <Image source={item.image} style={HomeScreenStyles.imageItem} />
+        <View style={HomeScreenStyles.nameContainerItem}>
+          <Text style={HomeScreenStyles.nameItem}>{item.name}</Text>
           <TouchableOpacity
-            style={{
-              marginTop: 8,
-              flexDirection: 'row',
-              height: 28,
-              borderRadius: 20,
-              alignItems: 'center',
-              minWidth: 62,
-              justifyContent: 'space-evenly',
-              backgroundColor:
-                item.status == 'Sent'
-                  ? '#FAAD39'
-                  : item.status == 'Failed'
-                  ? '#FE4A54'
-                  : '#1DC7AC',
-            }}>
-            <View
-              style={{
-                backgroundColor: 'white',
-                width: 16,
-                height: 16,
-                alignItems: 'center',
-                justifyContent: 'center',
-                borderRadius: 8,
-              }}>
+            style={[
+              HomeScreenStyles.statusBarItem,
+              {
+                backgroundColor:
+                  item.status == 'Sent'
+                    ? '#FAAD39'
+                    : item.status == 'Failed'
+                    ? '#FE4A54'
+                    : '#1DC7AC',
+              },
+            ]}>
+            <View style={HomeScreenStyles.statusIconItem}>
               {item.status == 'Sent' ? (
                 <SendIcon />
               ) : item.status == 'Failed' ? (
@@ -91,26 +56,10 @@ const HomeScreen = ({navigation}) => {
                 <ReceivedIcon />
               )}
             </View>
-            <Text
-              style={{
-                fontWeight: '400',
-                fontSize: 12,
-                lineHeight: 18,
-                color: '#FFFFFF',
-              }}>
-              {item.status}
-            </Text>
+            <Text style={HomeScreenStyles.statusItem}>{item.status}</Text>
           </TouchableOpacity>
         </View>
-        <View
-          style={{
-            flexDirection: 'row',
-            alignItems: 'center',
-            justifyContent: 'center',
-            right: 0,
-            position: 'absolute',
-            marginRight: 16,
-          }}>
+        <View style={HomeScreenStyles.currencyItem}>
           <CurrencyIcon
             width={16}
             height={12}
@@ -125,17 +74,17 @@ const HomeScreen = ({navigation}) => {
             }}
           />
           <Text
-            style={{
-              color:
-                item.status == 'Sent'
-                  ? '#FAAD39'
-                  : item.status == 'Failed'
-                  ? '#FE4A54'
-                  : '#1DC7AC',
-              fontWeight: '700',
-              fontSize: 16,
-              lineHeight: 24,
-            }}>
+            style={[
+              {
+                color:
+                  item.status == 'Sent'
+                    ? '#FAAD39'
+                    : item.status == 'Failed'
+                    ? '#FE4A54'
+                    : '#1DC7AC',
+              },
+              HomeScreenStyles.priceBarItem,
+            ]}>
             {item.price}
           </Text>
         </View>
@@ -144,25 +93,10 @@ const HomeScreen = ({navigation}) => {
   };
 
   return (
-    <View style={{backgroundColor: '#010A43', flex: 1, paddingHorizontal: 16}}>
-      <View
-        style={{
-          flexDirection: 'row',
-          marginTop: 24,
-          alignItems: 'center',
-        }}>
+    <View style={HomeScreenStyles.mainContainer}>
+      <View style={HomeScreenStyles.header}>
         <BarIcon />
-        <Text
-          style={{
-            marginLeft: 16,
-            flex: 1,
-            fontWeight: '550',
-            fontSize: 20,
-            lineHeight: 20,
-            color: '#FFFFFF',
-          }}>
-          Hello Sandra
-        </Text>
+        <Text style={HomeScreenStyles.helloBar}>Hello Sandra</Text>
         <CustomButton
           text={'Add money'}
           backgroundColor={'#212A6B'}
@@ -175,39 +109,12 @@ const HomeScreen = ({navigation}) => {
           onPress={requestMoney}
         />
       </View>
-      <Text
-        style={{
-          marginTop: 24,
-          color: '#E7E4E4',
-          fontSize: 12,
-          fontWeight: '400',
-          lineHeight: 12,
-        }}>
-        Your current balance is
-      </Text>
-      <View
-        style={{
-          flexDirection: 'row',
-          alignItems: 'center',
-          marginTop: 16,
-        }}>
+      <Text style={HomeScreenStyles.balance}>Your current balance is</Text>
+      <View style={HomeScreenStyles.priceContainer}>
         <CurrencyIcon width={40} height={32} />
-        <Text
-          style={{
-            color: '#EEEEEE',
-            fontWeight: '700',
-            fontSize: 40,
-            lineHeight: 48,
-            marginLeft: 8,
-          }}>
-          200000
-        </Text>
+        <Text style={HomeScreenStyles.price}>200000</Text>
       </View>
-      <View
-        style={{
-          flexDirection: 'row',
-          justifyContent: 'space-around',
-        }}>
+      <View style={HomeScreenStyles.moneyStatusButton}>
         <CustomButton
           text={'Request money'}
           color={'#464E8A'}
@@ -235,61 +142,16 @@ const HomeScreen = ({navigation}) => {
       <BottomSheet
         snapPoints={snapPoints}
         index={1}
-        backgroundStyle={{
-          borderTopLeftRadius: 40,
-          borderTopRightRadius: 40,
-          backgroundColor: '#10194E',
-        }}
-        handleIndicatorStyle={{
-          backgroundColor: '#4E589F',
-          borderRadius: 10,
-          width: 64,
-          height: 7,
-          marginTop: 16,
-        }}>
-        <View
-          style={{
-            flexDirection: 'row',
-            alignItems: 'center',
-            paddingHorizontal: 16,
-            height: 88,
-          }}>
-          <Text
-            style={{
-              color: 'white',
-              flex: 1,
-              fontWeight: '550',
-              fontSize: 16,
-              lineHeight: 24,
-            }}>
-            All Transactions
-          </Text>
-          <Text
-            style={{
-              color: '#4E589F',
-              fontWeight: '400',
-              fontSize: 14,
-              lineHeight: 24,
-            }}>
-            Sort by:
-          </Text>
-          <Text
-            style={{
-              color: 'white',
-              marginLeft: 9,
-              fontWeight: '400',
-              fontSize: 14,
-              lineHeight: 24,
-            }}>
-            Recent
-          </Text>
-          <DownArrow style={{marginLeft: 8}} />
+        backgroundStyle={HomeScreenStyles.handleBottomsheetBackgroundStyle}
+        handleIndicatorStyle={HomeScreenStyles.handleBottomsheetIndicatorStyle}>
+        <View style={HomeScreenStyles.transactionContainer}>
+          <Text style={HomeScreenStyles.transactionBar}>All Transactions</Text>
+          <Text style={HomeScreenStyles.sorting}>Sort by:</Text>
+          <Text style={HomeScreenStyles.recent}>Recent</Text>
+          <DownArrow style={HomeScreenStyles.downArrow} />
         </View>
         <FlatList
           data={peopleInfo}
-          ListHeaderComponent={() => {}}
-          style={{}}
-          contentContainerStyle={{}}
           renderItem={renderPeopleInfoHandler}
           scrollEnabled={true}
         />

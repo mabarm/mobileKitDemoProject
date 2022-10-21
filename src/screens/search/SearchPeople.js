@@ -1,31 +1,25 @@
-import React, {useMemo, useState, useRef, useCallback} from 'react';
+import React, {useState, useRef, useCallback} from 'react';
 import BottomSheet from '@gorhom/bottom-sheet';
-import {View, Text, Image, TextInput, Dimensions} from 'react-native';
+import {View, Text, Image, TextInput} from 'react-native';
 import CustomButton from '../../components/CustomButton';
 import CustomBack from '../../components/CustomBack';
 import Calculator from '../../components/Calculator';
 import peopleInfo from '../../data/peopleInfo';
 import ListPeople from './ListPeople';
-
-const personImage = require('../../assets/adeleke.png');
+import SearchPeopleStyles from './SearchPeopleStyles';
 
 const SearchPeople = ({navigation}) => {
   const sheetRef = useRef(null);
   const snapPoints = ['40%', '65%'];
   const [search, setSearch] = useState('');
   const [showUserBottomSheet, setShowUserBottomSheet] = useState(false);
-  const item = {
-    image: personImage,
-    name: 'Hello title',
-    phoneNumber: 90,
-  };
   const [showCalculator, setShowCalculator] = useState(false);
   const [searchUser, setSearchUser] = useState([]);
 
-  const showCalculatorHandler = item => {
+  const showCalculatorHandler = useCallback(item => {
     setShowCalculator(item);
     setShowUserBottomSheet(true);
-  };
+  }, []);
 
   const onSearch = text => {
     if (text.length == 0) {
@@ -38,7 +32,6 @@ const SearchPeople = ({navigation}) => {
       );
       setSearch(text);
       setSearchUser(filteredData);
-      console.log('mamata7', filteredData);
       filteredData.length == 0
         ? setShowUserBottomSheet(false)
         : setShowUserBottomSheet(true);
@@ -46,27 +39,11 @@ const SearchPeople = ({navigation}) => {
   };
 
   return (
-    <View style={{backgroundColor: '#010A43', flex: 1}}>
-      <View
-        style={{
-          flexDirection: 'row',
-          alignItems: 'center',
-          marginTop: 24,
-          paddingHorizontal: 10,
-          justifyContent: 'center',
-        }}>
+    <View style={SearchPeopleStyles.mainContainer}>
+      <View style={SearchPeopleStyles.header}>
         <CustomBack onPress={() => navigation.goBack()} />
         <TextInput
-          style={{
-            flex: 3.5,
-            width: '100%',
-            color: 'white',
-            height: 48,
-            borderWidth: 1,
-            borderRadius: 8,
-            backgroundColor: 'rgba(16, 25, 78, 1)',
-            paddingHorizontal: 18,
-          }}
+          style={SearchPeopleStyles.searchInput}
           placeholder="Search"
           onChangeText={text => onSearch(text)}
           value={search}
@@ -86,54 +63,20 @@ const SearchPeople = ({navigation}) => {
           index={0}
           snapPoints={snapPoints}
           enablePanDownToClose={true}
-          handleIndicatorStyle={{
-            backgroundColor: '#4E589F',
-            borderRadius: 10,
-            height: 7,
-            width: 64,
-          }}
-          backgroundStyle={{
-            borderTopLeftRadius: 40,
-            borderTopRightRadius: 40,
-            backgroundColor: '#10194E',
-          }}>
-          <View
-            style={{
-              backgroundColor: '#10194E',
-              alignItems: 'center',
-              zIndex: 10,
-              height: 316, //see
-              borderTopLeftRadius: 40,
-              borderTopRightRadius: 40,
-            }}>
+          handleIndicatorStyle={
+            SearchPeopleStyles.handleBottomsheetBackgroundStyle
+          }
+          backgroundStyle={SearchPeopleStyles.handleBottomsheetIndicator}>
+          <View style={SearchPeopleStyles.searchedUserContainer}>
             <Image
-              source={{uri: searchUser[0]?.image}}
-              style={{
-                width: 72,
-                height: 72,
-                borderRadius: 72 / 2,
-                marginTop: 32,
-              }}
+              source={searchUser[0]?.image}
+              style={SearchPeopleStyles.seachedUserImage}
             />
-            <Text
-              style={{
-                fontWeight: '550',
-                fontSize: 20,
-                lineHeight: 20,
-                color: '#FFFFFF',
-                marginTop: 16,
-              }}>
+            <Text style={SearchPeopleStyles.searchedUserName}>
               {searchUser[0]?.name}
             </Text>
-            <Text
-              style={{
-                fontWeight: '400',
-                fontSize: 14,
-                lineHeight: 21,
-                color: '#FFFFFF',
-                marginTop: 16,
-              }}>
-              {searchUser[0]?.price}
+            <Text style={SearchPeopleStyles.searchedUserText}>
+              {searchUser[0]?.phone}
             </Text>
             <CustomButton
               text={'Continue'}
