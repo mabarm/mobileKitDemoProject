@@ -29,6 +29,11 @@
 <br />
 <br />
 
-![Screenshot_20221022-012413_demoCutProject](https://user-images.githubusercontent.com/25671335/197280330-f405a7f9-345d-4b3f-874c-6b09617c913c.jpg)
+![Screenshot_20221022-012413_demoCutProject](https://user-images.githubusercontent.com/25671335/197280330-f405a7f9-345d-4b3f-874c-6b0961
+
+https://user-images.githubusercontent.com/25671335/197282527-6202e460-0734-4ff3-afb2-e7b7271e2a0c.mp4
+
+7c913c.jpg)
+
 
 
