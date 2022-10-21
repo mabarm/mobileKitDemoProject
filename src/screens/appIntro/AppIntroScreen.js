@@ -1,7 +1,8 @@
 import React from 'react';
 import AppIntroSlider from 'react-native-app-intro-slider';
-import {View, Text, Button, ImageBackground} from 'react-native';
+import {View, Text, ImageBackground} from 'react-native';
 import CustomButton from '../../components/CustomButton';
+import AppIntroScreenStyles from './AppIntroScreenStyles';
 
 const splashOne = require('../../assets/splashOne.png');
 const splashTwo = require('../../assets/splashTwo.png');
@@ -22,40 +23,32 @@ const AppIntroScreen = ({navigation}) => {
       image: splashTwo,
     },
   ];
+
+  const goToHome = () => {
+    navigation.navigate('Home');
+  };
   const renderItem = ({item}) => {
     return (
       <ImageBackground
         source={item.image}
-        style={{height: '100%', width: '100%'}}>
+        style={AppIntroScreenStyles.imageBackground}>
         <View
-          style={{
-            backgroundColor: item.key == 's1' ? '#17288E' : '#FFFFFF',
-            width: 323,
-            height: 224,
-            borderTopRightRadius: 70,
-            bottom: 0,
-            position: 'absolute',
-            justifyContent: 'center',
-            paddingHorizontal: 32,
-          }}>
+          style={[
+            AppIntroScreenStyles.bottomView,
+            {backgroundColor: item.key == 's1' ? '#17288E' : '#FFFFFF'},
+          ]}>
           <Text
-            style={{
-              fontSize: 18,
-              fontWeight: '700',
-              lineHeight: 30,
-              color: item.key == 's1' ? '#FFFFFF' : '#1C265C',
-              marginTop: 14,
-            }}>
+            style={[
+              AppIntroScreenStyles.title,
+              {color: item.key == 's1' ? '#FFFFFF' : '#1C265C'},
+            ]}>
             {item.title}
           </Text>
           <Text
-            style={{
-              fontWeight: '400',
-              fontSize: 16,
-              lineHeight: 24,
-              color: item.key == 's1' ? '#FAFAFA' : '#283470',
-              marginTop: 6,
-            }}>
+            style={[
+              AppIntroScreenStyles.description,
+              {color: item.key == 's1' ? '#FAFAFA' : '#283470'},
+            ]}>
             {item.description}
           </Text>
           <CustomButton
@@ -63,7 +56,7 @@ const AppIntroScreen = ({navigation}) => {
             backgroundColor={item.key == 's1' ? '#FFFFFF' : '#1C265C'}
             height={50}
             width={145}
-            onPress={() => {}}
+            onPress={goToHome}
             fontSize={16}
             lineHeight={30}
             marginTop={14}
@@ -77,29 +70,12 @@ const AppIntroScreen = ({navigation}) => {
     <AppIntroSlider
       data={slides}
       renderItem={renderItem}
-      dotStyle={{
-        backgroundColor: '#FDD590',
-        width: 16,
-        borderRadius: 4,
-        top: -155,
-        left: -145,
-      }}
-      activeDotStyle={{
-        backgroundColor: '#FFB129',
-        width: 32,
-        borderRadius: 4,
-        top: -155,
-        left: -145,
-      }}
+      dotStyle={AppIntroScreenStyles.dotStyle}
+      activeDotStyle={AppIntroScreenStyles.activeDotstyle}
       dotClickEnabled={true}
       showNextButton={false}
       showDoneButton={true}
-      onDone={() => navigation.navigate('Home')}
-      onSlideChange={index => {
-        if (index === 2) {
-          navigation.navigate('Home');
-        }
-      }}
+      onDone={goToHome}
     />
   );
 };
