@@ -1,71 +1,65 @@
+const imageOne = require('../assets/peopleImages/adeddddyin.png');
+const imageTwo = require('../assets/peopleImages/adedoyin.png');
+const imageThree = require('../assets/peopleImages/adelaide.png');
+const imageFour = require('../assets/peopleImages/adeleke.png');
+const imageFive = require('../assets/peopleImages/adelophe.png');
+const imageSix = require('../assets/peopleImages/aduni.png');
+
 export default [
   {
     id: 1,
     name: 'Adeboye Usman',
-    image:
-      'https://notjustdev-dummy.s3.us-east-2.amazonaws.com/images/products/cleanarchitecture.jpg',
+    image: imageOne,
     status: 'Received',
-    ratings: 1325,
     price: 20.98,
-    oldPrice: 24.06,
+    phone: '(+234) 905 1694 275',
   },
   {
     id: 2,
     name: 'Mercy Poppy',
-    image:
-      'https://notjustdev-dummy.s3.us-east-2.amazonaws.com/images/products/cleancode.jpg',
+    image: imageTwo,
     status: 'Failed',
-    ratings: 2989,
     price: 32.98,
-    oldPrice: 34.06,
+    phone: '(+234) 901 1344 275',
   },
   {
     id: 3,
     name: 'Onome',
-    image:
-      'https://notjustdev-dummy.s3.us-east-2.amazonaws.com/images/products/imac1.jpg',
+    image: imageThree,
     status: 'Sent',
-    ratings: 2989,
     price: 4206.9,
+    phone: '(+231) 201 1344 275',
   },
   {
     id: 4,
     name: 'Kingslet Abiodum',
-    image:
-      'https://notjustdev-dummy.s3.us-east-2.amazonaws.com/images/products/keyboard1.jpg',
+    image: imageFour,
     status: 'Received',
-    ratings: 2989,
     price: 99.98,
-    oldPrice: 120.06,
+    phone: '(+214) 701 5344 275',
   },
   {
     id: 5,
     name: 'Havit',
-    image:
-      'https://notjustdev-dummy.s3.us-east-2.amazonaws.com/images/products/keyboard2.jpg',
+    image: imageFive,
     status: 'Sent',
-    ratings: 2989,
     price: 99.98,
-    oldPrice: 120.06,
+    phone: '(+204) 101 2344 275',
   },
   {
     id: 6,
     name: 'Deann Jones',
-    image:
-      'https://notjustdev-dummy.s3.us-east-2.amazonaws.com/images/products/mouse1.jpg',
+    image: imageSix,
     status: 'Failed',
-    ratings: 2989,
     price: 99.98,
-    oldPrice: 120.06,
+    phone: '(+034) 441 4344 175',
   },
   {
     id: 7,
     name: 'Deadle Jrnes',
-    image:
-      'https://notjustdev-dummy.s3.us-east-2.amazonaws.com/images/products/mouse1.jpg',
+    image: imageFive,
     status: 'Failed',
-    ratings: 3000,
     price: 99.98,
-    oldPrice: 120.06,
+    phone: '(+014) 151 5555 275',
   },
 ];

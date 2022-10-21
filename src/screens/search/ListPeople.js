@@ -1,37 +1,17 @@
 import React from 'react';
 import OnePersonCircle from '../../components/OnePersonCircle';
-import {View, Dimensions, Image, Text} from 'react-native';
+import {View, Dimensions} from 'react-native';
+import ListPeopleStyles from './ListPeopleStyles';
 
 const ListPeople = ({peopleInfo, searchUser}) => {
   return (
     <View
-      style={{
-        borderWidth: 1,
-        borderColor: '#0D164B',
-        borderRadius: Dimensions.get('window').width - 100,
-        height: 375,
-        marginTop: 10,
-      }}>
-      <View
-        style={{
-          borderColor: '#0D164B',
-          borderWidth: 1,
-          width: 285,
-          height: 285,
-          borderRadius: 285 / 2,
-          alignSelf: 'center',
-          marginTop: '10%',
-        }}>
-        <View
-          style={{
-            borderColor: '#0D164B',
-            borderWidth: 1,
-            width: 185,
-            height: 185,
-            borderRadius: 185 / 2,
-            alignSelf: 'center',
-            marginTop: '15%',
-          }}>
+      style={[
+        ListPeopleStyles.outerCircle,
+        {borderRadius: Dimensions.get('window').width - 100},
+      ]}>
+      <View style={ListPeopleStyles.middleCircle}>
+        <View style={ListPeopleStyles.innerCircle}>
           <OnePersonCircle
             viewStyle={{
               marginTop: -60,
@@ -108,4 +88,4 @@ const ListPeople = ({peopleInfo, searchUser}) => {
   );
 };
 
-export default ListPeople;
+export default React.memo(ListPeople);

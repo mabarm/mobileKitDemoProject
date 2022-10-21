@@ -5,7 +5,6 @@ import CustomButton from './CustomButton';
 import Cross from '../assets/cross.svg';
 import ClearCross from '../assets/clearCross.svg';
 import CurrencyIcon from '../assets/currency.svg';
-import {SearchBar} from 'react-native-screens';
 
 const Calculator = ({showCalculatorHandler, showCalculator}) => {
   const [display, setDisplay] = useState('');
@@ -76,7 +75,6 @@ const styles = StyleSheet.create({
     bottom: 0,
     position: 'absolute',
   },
-
   display: {
     justifyContent: 'center',
     alignItems: 'center',
@@ -84,7 +82,6 @@ const styles = StyleSheet.create({
     height: 72,
     flexDirection: 'row',
   },
-
   title: {
     color: '#EEEEEE',
     fontSize: 64,

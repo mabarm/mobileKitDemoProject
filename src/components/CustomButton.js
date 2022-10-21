@@ -9,7 +9,6 @@ const CustomButton = ({
   width,
   height,
   onPress,
-  fontWeight,
   lineHeight,
   fontSize,
 }) => {
