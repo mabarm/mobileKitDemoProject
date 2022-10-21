@@ -1,12 +1,10 @@
 import React from 'react';
-import {Text, View, Image, TouchableOpacity} from 'react-native';
-import BackIcon from '../assets/backIcon.svg';
-import CustomButton from '../components/CustomButton';
-// import LinearGradient from 'react-native-linear-gradient';
-import CustomBack from '../components/CustomBack';
-import CurrencyIcon from '../assets/currency.svg';
+import {Text, View, Image} from 'react-native';
+import CustomButton from '../../components/CustomButton';
+import CustomBack from '../../components/CustomBack';
+import CurrencyIcon from '../../assets/currency.svg';
 
-const personImage = require('../assets/adeleke.png');
+const personImage = require('../../assets/adeleke.png');
 
 const MoneyRequestScreen = ({navigation}) => {
   const sendMoney = () => {
