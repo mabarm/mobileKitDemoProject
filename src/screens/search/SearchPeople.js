@@ -1,12 +1,10 @@
 import React, {useMemo, useState, useRef, useCallback} from 'react';
 import BottomSheet from '@gorhom/bottom-sheet';
-import {View, Text, Image, TextInput, FlatList} from 'react-native';
+import {View, Text, Image, TextInput, Dimensions} from 'react-native';
 import CustomButton from '../../components/CustomButton';
-import SendMoney from '../sendMoney/sendMoney';
 import CustomBack from '../../components/CustomBack';
 import Calculator from '../../components/Calculator';
 import peopleInfo from '../../data/peopleInfo';
-import CircleList from 'react-native-circle-list';
 
 const personImage = require('../../assets/adeleke.png');
 
@@ -21,7 +19,7 @@ const SearchPeople = ({navigation}) => {
     phoneNumber: 90,
   };
   const [showCalculator, setShowCalculator] = useState(false);
-  const [searchUser, setSearchUser] = useState(false);
+  const [searchUser, setSearchUser] = useState([]);
 
   const showCalculatorHandler = item => {
     setShowCalculator(item);
@@ -128,17 +126,211 @@ const SearchPeople = ({navigation}) => {
       <View
         style={{
           borderWidth: 1,
-          borderColor: 'green',
-          borderRadius: 200,
-          alignItems: 'center',
-          justifyContent: 'center',
+          borderColor: '#0D164B',
+          borderRadius: Dimensions.get('window').width - 100,
+          height: 375,
+          marginTop: 10,
         }}>
-        <FlatList
-          data={peopleInfo}
-          renderItem={renderUserInfoList}
-          keyExtractor={item => item?.id}
-        />
+        <View
+          style={{
+            borderColor: '#0D164B',
+            borderWidth: 1,
+            width: 285,
+            height: 285,
+            borderRadius: 285 / 2,
+            alignSelf: 'center',
+            marginTop: '10%',
+          }}>
+          <View
+            style={{
+              borderColor: '#0D164B',
+              borderWidth: 1,
+              width: 185,
+              height: 185,
+              borderRadius: 185 / 2,
+              alignSelf: 'center',
+              marginTop: '15%',
+            }}>
+            <View
+              style={{
+                marginTop: -60,
+                alignSelf: 'center',
+                width: 100,
+                alignItems: 'center',
+              }}>
+              <Image
+                source={{uri: peopleInfo[0].image}}
+                style={{
+                  width: 36,
+                  height: 36,
+                  borderRadius: 18,
+                  borderWidth: 2,
+                  borderColor: '#FFFFFF',
+                }}
+              />
+              <Text
+                style={{
+                  fontWeight: '400',
+                  fontSize: 12,
+                  lineHeight: 18,
+                  color: '#FAFAFA',
+                  marginTop: 8,
+                }}>
+                {peopleInfo[0].name}
+              </Text>
+            </View>
+            <View
+              style={{
+                marginTop: 30,
+                marginLeft: -90,
+                width: 100,
+                alignItems: 'center',
+              }}>
+              <Image
+                source={{uri: peopleInfo[1].image}}
+                style={{
+                  width: 36,
+                  height: 36,
+                  borderRadius: 18,
+                  borderWidth: 2,
+                  borderColor: '#FFFFFF',
+                }}
+              />
+              <Text
+                style={{
+                  fontWeight: '400',
+                  fontSize: 12,
+                  lineHeight: 18,
+                  color: '#FAFAFA',
+                  marginTop: 8,
+                }}>
+                {peopleInfo[1].name}
+              </Text>
+            </View>
+            <View
+              style={{
+                alignSelf: 'center',
+                width: 100,
+                marginTop: 125,
+                alignItems: 'center',
+              }}>
+              <Image
+                source={{uri: peopleInfo[2].image}}
+                style={{
+                  width: 36,
+                  height: 36,
+                  borderRadius: 18,
+                  borderWidth: 2,
+                  borderColor: '#FFFFFF',
+                }}
+              />
+              <Text
+                style={{
+                  fontWeight: '400',
+                  fontSize: 12,
+                  lineHeight: 18,
+                  color: '#FAFAFA',
+                  marginTop: 8,
+                }}>
+                {peopleInfo[2].name}
+              </Text>
+            </View>
+            <View
+              style={{
+                width: 100,
+                alignItems: 'center',
+                marginLeft: 150,
+                marginTop: -120,
+              }}>
+              <Image
+                source={{uri: peopleInfo[3].image}}
+                style={{
+                  width: 36,
+                  height: 36,
+                  borderRadius: 18,
+                  borderWidth: 2,
+                  borderColor: '#FFFFFF',
+                }}
+              />
+              <Text
+                style={{
+                  fontWeight: '400',
+                  fontSize: 12,
+                  lineHeight: 18,
+                  color: '#FAFAFA',
+                  marginTop: 8,
+                }}>
+                {peopleInfo[3].name}
+              </Text>
+              <View
+                style={{
+                  alignSelf: 'center',
+                  width: 100,
+                  marginTop: -180,
+                  marginLeft: -50,
+                  alignItems: 'center',
+                }}>
+                <Image
+                  source={{
+                    uri:
+                      searchUser.length !== 0
+                        ? searchUser[0]?.image
+                        : peopleInfo[6].image,
+                  }}
+                  style={{
+                    width: 72,
+                    height: 72,
+                    borderRadius: 72 / 2,
+                    borderWidth: 4,
+                    borderColor: '#1DC76B',
+                  }}
+                />
+                <Text
+                  style={{
+                    fontWeight: '400',
+                    fontSize: 14,
+                    lineHeight: 18,
+                    color: '#1DC76B',
+                  }}>
+                  {searchUser.length !== 0
+                    ? searchUser[0]?.name
+                    : peopleInfo[6].name}
+                </Text>
+              </View>
+              <View
+                style={{
+                  width: 100,
+                  top: -20,
+                  marginLeft: -180,
+                  alignItems: 'center',
+                  alignSelf: 'flex-start',
+                }}>
+                <Image
+                  source={{uri: peopleInfo[5].image}}
+                  style={{
+                    width: 36,
+                    height: 36,
+                    borderRadius: 18,
+                    borderWidth: 2,
+                    borderColor: '#FFFFFF',
+                  }}
+                />
+                <Text
+                  style={{
+                    fontWeight: '400',
+                    fontSize: 12,
+                    lineHeight: 18,
+                    color: '#FAFAFA',
+                    marginTop: 8,
+                  }}>
+                  {peopleInfo[5].name}
+                </Text>
+              </View>
+            </View>
+          </View>
+        </View>
       </View>
+
       {showCalculator && (
         <Calculator
           showCalculator={showCalculator}
